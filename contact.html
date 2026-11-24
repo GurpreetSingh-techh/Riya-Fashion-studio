@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Riya Fashion Studio</title>
+    <title>Contact | ÉLAN Fashion Studio</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header class="header">
-
-    <a class="logo" href="index.html">
-        Riya Fashion <span></span>
-    </a>
+    <a class="logo" href="index.html">Riya Fashion <span></span></a>
 
     <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
@@ -26,44 +22,24 @@
         <a href="gallery.html">Gallery</a>
         <a class="active" href="contact.html">Contact</a>
     </nav>
-
 </header>
-
 
 <main>
 
     <section class="page-banner">
-
         <p class="eyebrow">SAY HELLO</p>
-
-        <h1>
-            Let's create<br>
-            <em>something lovely.</em>
-        </h1>
-
-        <p>
-            Have a question or an idea? Send us a message.
-        </p>
-
+        <h1>Let's create<br><em>something lovely.</em></h1>
+        <p>Have a question or an idea? Send us a message.</p>
     </section>
-
 
     <section class="contact-layout section">
 
         <div>
-
             <p class="eyebrow">GET IN TOUCH</p>
-
             <h2>We would love to hear from you.</h2>
-
-            <p>
-                Have a question about our fashion collections
-                or services? Send us an enquiry using the form.
-                We would be happy to hear from you.
-            </p>
+            <p>Use the form to send a sample enquiry. This is a front-end college project demonstration.</p>
 
             <div class="contact-info">
-
                 <p>
                     <strong>Email</strong><br>
                     riyafashion123@gmail.com
@@ -71,78 +47,33 @@
 
                 <p>
                     <strong>Location</strong><br>
-                    Ward no-8, Balachaur, India
+                    Ward no-8,Balachaur, India
                 </p>
 
                 <p>
                     <strong>Studio Hours</strong><br>
                     Monday – Saturday, 10 AM – 6 PM
                 </p>
-
             </div>
-
         </div>
 
-
-        <!-- Contact Form -->
-
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" onsubmit="submitForm(event)">
 
             <label for="name">Your Name</label>
+            <input id="name" type="text" placeholder="Enter your name" required>
 
-            <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Enter your name"
-                required
-            >
-
-
-            <label for="email">Email Address</label>
-
-            <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Enter your email"
-                required
-            >
-
+            <label for="riyu23@gmail.com">Email Address</label>
+            <input id="email" type="email" placeholder="Enter your email" required>
 
             <label for="subject">Subject</label>
-
-            <input
-                id="subject"
-                name="subject"
-                type="text"
-                placeholder="What is this about?"
-                required
-            >
-
+            <input id="subject" type="text" placeholder="What is this about?" required>
 
             <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Write your message..." required></textarea>
 
-            <textarea
-                id="message"
-                name="message"
-                rows="5"
-                placeholder="Write your message..."
-                required
-            ></textarea>
+            <button class="btn" type="submit">Send Message</button>
 
-
-            <button class="btn" id="submit-btn" type="submit">
-                Send Message
-            </button>
-
-
-            <p
-                id="form-message"
-                class="form-message"
-                role="status"
-                aria-live="polite"
-            ></p>
+            <p id="form-message" class="form-message"></p>
 
         </form>
 
@@ -150,25 +81,11 @@
 
 </main>
 
-
 <footer class="footer">
-
-    <a class="logo" href="index.html">
-        Riya<span></span>
-    </a>
-
-    <p>
-        Designed with creativity.
-        Styled with confidence.
-    </p>
-
-    <small>
-        © <span class="year"></span>
-        Riya Fashion Studio. College Project.
-    </small>
-
+    <a class="logo" href="index.html">Riya<span></span></a>
+    <p>Designed with creativity. Styled with confidence.</p>
+    <small>© <span class="year"></span> Riya Fashion Studio. College Project.</small>
 </footer>
-
 
 <script src="js/script.js"></script>
 
