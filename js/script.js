@@ -1,54 +1,129 @@
-// Mobile navigation, footer year and contact form submission.
-document.addEventListener("DOMContentLoaded", () => {
-  const menuButton = document.querySelector(".menu-btn");
-  const navigation = document.getElementById("navigation");
+// =====================================
+// RIYA FASHION STUDIO - JAVASCRIPT
+// =====================================
 
-  if (menuButton && navigation) {
-    menuButton.addEventListener("click", () => {
-      const isOpen = navigation.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.textContent = isOpen ? "×" : "☰";
+
+// MOBILE NAVIGATION
+
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+if (menuToggle && navLinks) {
+
+    menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
     });
-    navigation.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navigation.classList.remove("open");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.textContent = "☰";
-      });
-    });
-  }
 
-  document.querySelectorAll(".year").forEach((element) => {
-    element.textContent = new Date().getFullYear();
-  });
+}
 
-  const contactForm = document.getElementById("contact-form");
+
+// CURRENT YEAR
+
+const currentYear = document.getElementById("current-year");
+
+if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+}
+
+
+// =====================================
+// CONTACT FORM - EMAIL SUBMISSION
+// =====================================
+
+const contactForm = document.getElementById("contact-form");
 
 if (contactForm) {
-    contactForm.addEventListener("submit", function(event) {
+
+    contactForm.addEventListener("submit", async function (event) {
+
         event.preventDefault();
 
+        const submitButton = document.getElementById("submit-btn");
         const formMessage = document.getElementById("form-message");
-        const submitButton = contactForm.querySelector('button[type="submit"]');
 
-        submitButton.textContent = "Message Sent!";
+        // Show sending message
+
         submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
 
-        formMessage.textContent =
-            "✓ Thank you! Your message has been submitted successfully.";
+        formMessage.style.display = "block";
+        formMessage.style.backgroundColor = "#fff3cd";
+        formMessage.style.color = "#856404";
 
-        formMessage.style.color = "green";
-        formMessage.style.backgroundColor = "#e8f5e9";
-        formMessage.style.padding = "12px";
-        formMessage.style.borderRadius = "6px";
+        formMessage.textContent = "Please wait, sending your message...";
 
-        contactForm.reset();
 
-        setTimeout(function() {
-            submitButton.textContent = "Send Message";
-            submitButton.disabled = false;
-        }, 3000);
+        // Collect visitor information
+
+        const formData = new FormData(contactForm);
+
+        formData.append(
+            "_subject",
+            "New Enquiry - Riya Fashion Studio"
+        );
+
+
+        try {
+
+            // Send message to Tanu's Gmail through FormSubmit
+
+            const response = await fetch(
+                "https://formsubmit.co/ajax/tanu4022@gmail.com",
+                {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }
+            );
+
+
+            const result = await response.json();
+
+
+            // Check submission result
+
+            if (
+                response.ok &&
+                String(result.success).toLowerCase() === "true"
+            ) {
+
+                formMessage.style.backgroundColor = "#d4edda";
+                formMessage.style.color = "#155724";
+
+                formMessage.textContent =
+                    "✓ Your message has been sent successfully! Thank you for contacting Riya Fashion Studio.";
+
+                contactForm.reset();
+
+            } else {
+
+                throw new Error(
+                    result.message || "Unable to send your message."
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.error("Contact form error:", error);
+
+            formMessage.style.backgroundColor = "#f8d7da";
+            formMessage.style.color = "#721c24";
+
+            formMessage.textContent =
+                "Sorry! Your message could not be sent. Please try again later.";
+
+        }
+
+
+        // Restore button
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+
     });
+
 }
-  });
-});
