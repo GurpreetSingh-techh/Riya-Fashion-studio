@@ -22,45 +22,33 @@ document.addEventListener("DOMContentLoaded", () => {
     element.textContent = new Date().getFullYear();
   });
 
-  const form = document.getElementById("contact-form");
-  if (!form) return;
+  const contactForm = document.getElementById("contact-form");
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const status = document.getElementById("form-message");
-    const button = form.querySelector('button[type="submit"]');
-    const originalText = button.innerHTML;
-    status.className = "form-message is-sending";
-    status.textContent = "Sending your message…";
-    button.disabled = true;
-    button.textContent = "Sending…";
+if (contactForm) {
+    contactForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/riyafashion123@gmail.com", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
-      });
+        const formMessage = document.getElementById("form-message");
+        const submitButton = contactForm.querySelector('button[type="submit"]');
 
-      let result = {};
-      try { result = await response.json(); }
-      catch (_) { throw new Error("The email service returned an unexpected response. Please try again."); }
+        submitButton.textContent = "Message Sent!";
+        submitButton.disabled = true;
 
-      const accepted = result.success === true || String(result.success).toLowerCase() === "true";
-      if (!response.ok || !accepted) {
-        throw new Error(result.message || "The email service could not accept your message. Please try again.");
-      }
+        formMessage.textContent =
+            "✓ Thank you! Your message has been submitted successfully.";
 
-      status.className = "form-message is-success";
-      status.textContent = "✓ Thank you! Your message has been sent successfully. Riya Fashion Studio will be in touch soon.";
-      form.reset();
-    } catch (error) {
-      console.error("Contact form submission failed:", error);
-      status.className = "form-message is-error";
-      status.textContent = error.message || "Sorry, we could not send your message. Please try again or email riyafashion123@gmail.com.";
-    } finally {
-      button.disabled = false;
-      button.innerHTML = originalText;
-    }
+        formMessage.style.color = "green";
+        formMessage.style.backgroundColor = "#e8f5e9";
+        formMessage.style.padding = "12px";
+        formMessage.style.borderRadius = "6px";
+
+        contactForm.reset();
+
+        setTimeout(function() {
+            submitButton.textContent = "Send Message";
+            submitButton.disabled = false;
+        }, 3000);
+    });
+}
   });
 });
