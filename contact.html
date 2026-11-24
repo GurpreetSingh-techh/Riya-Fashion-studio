@@ -4,165 +4,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Contact Us | Riya Fashion Studio</title>
-
+    <title>Contact | Riya Fashion Studio</title>
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        .contact-section {
-            max-width: 750px;
-            margin: 60px auto;
-            padding: 35px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-section h1 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .contact-section p {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 18px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 15px;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-        }
-
-        .contact-form button {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 6px;
-            background: #222;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .contact-form button:hover {
-            background: #a67c52;
-        }
-
-        .contact-form button:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        #form-message {
-            display: none;
-            padding: 14px;
-            margin-top: 18px;
-            border-radius: 6px;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        @media (max-width: 600px) {
-            .contact-section {
-                margin: 30px 15px;
-                padding: 22px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
-    <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">Riya Fashion Studio</a>
+<header class="header">
 
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="collections.html">Collections</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+    <a class="logo" href="index.html">
+        Riya Fashion <span></span>
+    </a>
 
-            <button class="menu-toggle" aria-label="Toggle navigation">
-                ☰
-            </button>
-        </nav>
-    </header>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-    <main>
+    <nav id="navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="collections.html">Collections</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a class="active" href="contact.html">Contact</a>
+    </nav>
 
-        <section class="contact-section">
+</header>
 
-            <h1>Contact Us</h1>
+
+<main>
+
+    <section class="page-banner">
+
+        <p class="eyebrow">SAY HELLO</p>
+
+        <h1>
+            Let's create<br>
+            <em>something lovely.</em>
+        </h1>
+
+        <p>
+            Have a question or an idea? Send us a message.
+        </p>
+
+    </section>
+
+
+    <section class="contact-layout section">
+
+        <div>
+
+            <p class="eyebrow">GET IN TOUCH</p>
+
+            <h2>We would love to hear from you.</h2>
 
             <p>
-                Have a question or want to know more about our collections?
-                Send us a message. We'd love to hear from you!
+                Have a question about our fashion collections
+                or services? Send us an enquiry using the form.
+                We would be happy to hear from you.
             </p>
 
-            <form id="contact-form" class="contact-form">
+            <div class="contact-info">
 
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Full Name"
-                    required
-                >
+                <p>
+                    <strong>Email</strong><br>
+                    riyafashion123@gmail.com
+                </p>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email Address"
-                    required
-                >
+                <p>
+                    <strong>Location</strong><br>
+                    Ward no-8, Balachaur, India
+                </p>
 
-                <input
-                    type="text"
-                    name="subject"
-                    placeholder="Subject"
-                    required
-                >
+                <p>
+                    <strong>Studio Hours</strong><br>
+                    Monday – Saturday, 10 AM – 6 PM
+                </p>
 
-                <textarea
-                    name="message"
-                    placeholder="Write your message here..."
-                    rows="6"
-                    required
-                ></textarea>
+            </div>
 
-                <button type="submit" id="submit-btn">
-                    Send Message
-                </button>
+        </div>
 
-                <div id="form-message" role="status" aria-live="polite"></div>
 
-            </form>
+        <!-- Contact Form -->
 
-        </section>
+        <form class="contact-form" id="contact-form">
 
-    </main>
+            <label for="name">Your Name</label>
 
-    <footer>
-        <p>&copy; <span id="current-year"></span> Riya Fashion Studio. All Rights Reserved.</p>
-    </footer>
+            <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Enter your name"
+                required
+            >
 
-    <script src="js/script.js"></script>
+
+            <label for="email">Email Address</label>
+
+            <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label for="subject">Subject</label>
+
+            <input
+                id="subject"
+                name="subject"
+                type="text"
+                placeholder="What is this about?"
+                required
+            >
+
+
+            <label for="message">Message</label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Write your message..."
+                required
+            ></textarea>
+
+
+            <button class="btn" id="submit-btn" type="submit">
+                Send Message
+            </button>
+
+
+            <p
+                id="form-message"
+                class="form-message"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <a class="logo" href="index.html">
+        Riya<span></span>
+    </a>
+
+    <p>
+        Designed with creativity.
+        Styled with confidence.
+    </p>
+
+    <small>
+        © <span class="year"></span>
+        Riya Fashion Studio. College Project.
+    </small>
+
+</footer>
+
+
+<script src="js/script.js"></script>
 
 </body>
 </html>
