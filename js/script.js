@@ -8,7 +8,6 @@ const navigation = document.getElementById("navigation");
 if (menuButton && navigation) {
     menuButton.addEventListener("click", function () {
         const isOpen = navigation.classList.toggle("active");
-
         menuButton.setAttribute("aria-expanded", isOpen);
     });
 }
@@ -24,14 +23,14 @@ document.querySelectorAll(".year").forEach(function (element) {
 
 
 // =====================================
-// CONTACT FORM - SEND EMAIL
+// DEMO CONTACT FORM
 // =====================================
 
 const contactForm = document.getElementById("contact-form");
 
 if (contactForm) {
 
-    contactForm.addEventListener("submit", async function (event) {
+    contactForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
@@ -40,61 +39,29 @@ if (contactForm) {
 
         // Show sending message
         submitButton.disabled = true;
-        submitButton.textContent = "Sending...";
+        submitButton.textContent = "Submitting...";
 
         formMessage.style.display = "block";
         formMessage.style.color = "#856404";
-        formMessage.textContent = "Please wait, sending your message...";
+        formMessage.textContent = "Please wait... Submitting your enquiry.";
 
-        // Collect form information
-        const formData = new FormData(contactForm);
+        // Simulate form submission
+        setTimeout(function () {
 
-        try {
+            // Show success message
+            formMessage.style.color = "green";
 
-            // Send information to FormSubmit
-            const response = await fetch(
-                "https://formsubmit.co/ajax/tanu4022@gmail.com",
-                {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        "Accept": "application/json"
-                    }
-                }
-            );
-
-            const result = await response.json();
-
-            if (response.ok && String(result.success).toLowerCase() === "true") {
-
-                // Success message
-                formMessage.style.color = "green";
-                formMessage.textContent =
-                    "✓ Your message has been sent successfully! Thank you for contacting Riya Fashion Studio.";
-
-                // Clear the form
-                contactForm.reset();
-
-            } else {
-
-                throw new Error(result.message || "Message could not be sent.");
-
-            }
-
-        } catch (error) {
-
-            console.error("Contact form error:", error);
-
-            // Error message
-            formMessage.style.color = "red";
             formMessage.textContent =
-                "Sorry! Your message could not be sent. Please try again later.";
+                "✓ Thank you for contacting Riya Fashion Studio! Your enquiry has been submitted successfully. We appreciate your interest.";
 
-        }
+            // Clear the form
+            contactForm.reset();
 
-        // Restore button
-        submitButton.disabled = false;
-        submitButton.innerHTML = 'Send Enquiry <span>→</span>';
+            // Restore button
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Send Enquiry <span>→</span>';
+
+        }, 1200);
 
     });
 
